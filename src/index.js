@@ -9,6 +9,7 @@ import { store } from "./app/store";
 import { filteredProjects, projectCardImages } from "./config";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import './i18n'; // Adicione esta linha
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

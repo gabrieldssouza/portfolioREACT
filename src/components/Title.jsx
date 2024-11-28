@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 // State
 import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 
 // #region styled-components
 const TitleDiv = styled.div`
@@ -32,12 +33,13 @@ const propTypes = {
 };
 
 const Title = ({ size = "h1", text }) => {
+  const { t } = useTranslation();
   return (
     <TitleDiv>
       {size === "h1" ? (
-        <h1 className="title">{text}</h1>
+        <h1 className="title">{t(text)}</h1>
       ) : (
-        <h2 className="title">{text}</h2>
+        <h2 className="title">{t(text)}</h2>
       )}
       <div className="underline" />
     </TitleDiv>

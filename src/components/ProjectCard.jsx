@@ -9,11 +9,12 @@ import { Icon } from "@iconify/react";
 import GH from "../images/GH.svg";
 // Components
 import { Card } from "react-bootstrap";
+import { useTranslation } from 'react-i18next';
 
 // #region styled-components
 const StyledCard = styled.div`
   .card {
-    height: var(--card-height);
+    height: 300px;
     border: var(--border);
     transition: all 0.2s ease-in-out;
     background: ${({ theme }) =>
@@ -70,28 +71,23 @@ const propTypes = {
 };
 
 const ProjectCard = ({ demo, description, image, name, url }) => {
+  const { t } = useTranslation();
   return (
     <StyledCard>
       <Card>
         <Card.Img
           variant="top"
-          src={image ? image : GH}
+          src={image}
           alt={name}
           className="mx-auto"
         />
         <Card.Body className="overflow-auto text-center">
           <Card.Title>{name}</Card.Title>
           <Card.Text>{description}</Card.Text>
-          {demo !== (undefined && null && "") ? (
-            <Card.Link href={demo}>
-              {"Live Demo "}
-              <Icon icon="icon-park-outline:code-computer" />
-            </Card.Link>
-          ) : null}
         </Card.Body>
         <Card.Footer className="text-center">
           <Card.Link href={url}>
-            {"View on GitHub "}
+            {t("View on GitHub ")}
             <Icon icon="icomoon-free:github" />
           </Card.Link>
         </Card.Footer>

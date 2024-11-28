@@ -22,6 +22,7 @@ import ProjectCard from "../components/ProjectCard";
 import BackToTop from "../components/BackToTop";
 // Utils
 import { updateTitle } from "../utils";
+import { useTranslation } from 'react-i18next';
 
 // #region styled-components
 const StyledSection = styled.section`
@@ -39,6 +40,7 @@ const StyledSection = styled.section`
 
 // #region component
 const AllProjects = () => {
+  const { t } = useTranslation();
   const [searchInput, setSearchInput] = React.useState("");
   const [filteredResults, setFilteredResults] = React.useState([]);
   const [pageItems, setPageItems] = React.useState([]);
@@ -113,7 +115,7 @@ const AllProjects = () => {
     content = (
       <>
         <Container className="d-flex justify-content-center">
-          <Title size={"h2"} text={"All Projects"} />
+          <Title size={"h2"} text={t("All Projects")} />
         </Container>
         <Container className="d-flex flex-column justify-content-center">
           <Loading />

@@ -14,9 +14,12 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import Loading from "./Loading";
 import Title from "./Title";
 import ProjectCard from "./ProjectCard";
+import { useTranslation } from 'react-i18next';
+import { projectCardImages } from '../config';
 
 // #region component
 const Projects = () => {
+  const { t } = useTranslation();
   const theme = useSelector(selectMode);
   const projects = useSelector(selectProjects);
   const mainProjects = useSelector(selectMainProjects);
@@ -41,6 +44,9 @@ const Projects = () => {
           <>
             <Row xs={1} md={2} lg={3} className="g-4 justify-content-center">
               {mainProjects.map((element) => {
+                const projectImage = projectCardImages.find(
+                  (img) => img.name === element.name
+                )?.image;
                 return (
                   <Col key={element.id}>
                     <ProjectCard
@@ -63,7 +69,7 @@ const Projects = () => {
                       theme === "light" ? "outline-dark" : "outline-light"
                     }
                   >
-                    All <Icon icon="icomoon-free:github" /> Projects
+                    {t("All")} <Icon icon="icomoon-free:github" /> {t("Projects")}
                   </Button>
                 </Link>
               </Container>

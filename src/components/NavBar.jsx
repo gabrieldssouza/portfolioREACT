@@ -1,35 +1,28 @@
-import React from "react";
-import styled from "styled-components";
-// State
-import { useSelector } from "react-redux";
-import { selectMode } from "../app/appSlice";
-import PropTypes from "prop-types";
-// Router
-import { Link, useLocation } from "react-router-dom";
-// Images
-import defaultLogo from "../images/defaultNavLogo.svg";
-// Components
-import { Link as ScrollLink } from "react-scroll";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import ThemeToggle from "./ThemeToggle";
+import React from 'react';
+import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { selectMode } from '../app/appSlice';
+import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import defaultLogo from '../images/defaultNavLogo.svg';
+import { Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
+import ThemeToggle from './ThemeToggle';
 
-// #region constants
 const navLinks = {
   routes: [
-    { id: "1R", name: "Home", route: "/" },
-    { id: "2R", name: "All Projects", route: "/All-Projects" },
+    { id: '1R', name: 'Home', route: '/' },
+    { id: '2R', name: 'All Projects', route: '/All-Projects' },
   ],
   to: [
-    { id: "1T", name: "Home", to: "Home" },
-    { id: "2T", name: "About Me", to: "About" },
-    { id: "3T", name: "Skills", to: "Skills" },
-    { id: "4T", name: "Projects", to: "Projects" },
-    { id: "5T", name: "Contact", to: "Contact" },
+    { id: '1T', name: 'Home', to: 'Home' },
+    { id: '2T', name: 'About Me', to: 'About' },
+    { id: '3T', name: 'Skills', to: 'Skills' },
+    { id: '4T', name: 'Projects', to: 'Projects' },
+    { id: '5T', name: 'Contact', to: 'Contact' },
   ],
 };
-// #endregion
 
-// #region styled-components
 const StyledDiv = styled.div`
   .navbar {
     border-bottom: var(--border);
@@ -41,12 +34,10 @@ const StyledDiv = styled.div`
 
   .logo-img {
     background: ${({ theme }) =>
-      theme.name === "light" ? "var(--bs-dark)" : "var(--bs-light)"};
+      theme.name === 'light' ? 'var(--bs-dark)' : 'var(--bs-light)'};
   }
 `;
-// #endregion
 
-// #region component
 const propTypes = {
   Logo: PropTypes.node,
   callBack: PropTypes.func,
@@ -57,6 +48,11 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
   const theme = useSelector(selectMode);
   const [isExpanded, setisExpanded] = React.useState(false);
   const { pathname } = useLocation();
+  const { i18n, t } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <StyledDiv>
@@ -66,8 +62,8 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
         collapseOnSelect={true}
         expand="xl"
         expanded={isExpanded}
-        bg={theme === "light" ? "light" : "dark"}
-        variant={theme === "light" ? "light" : "dark"}
+        bg={theme === 'light' ? 'light' : 'dark'}
+        variant={theme === 'light' ? 'light' : 'dark'}
         fixed="top"
       >
         <Container>
@@ -86,11 +82,11 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
           />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav navbarScroll className="me-auto">
-              {pathname === "/"
+              {pathname === '/'
                 ? navLinks.to.map((el) => {
                     return (
                       <Nav.Item key={el.id}>
-                        <ScrollLink
+                        <Link
                           to={el.to}
                           spy={true}
                           activeClass="active"
@@ -101,8 +97,8 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                             }, closeDelay);
                           }}
                         >
-                          {el.name}
-                        </ScrollLink>
+                          {t(el.name)}
+                        </Link>
                       </Nav.Item>
                     );
                   })
@@ -113,8 +109,8 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                           to={el.route}
                           className={
                             pathname === el.route
-                              ? "nav-link active"
-                              : "nav-link"
+                              ? 'nav-link active'
+                              : 'nav-link'
                           }
                           onClick={() => {
                             setTimeout(() => {
@@ -122,13 +118,30 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                             }, closeDelay);
                           }}
                         >
-                          {el.name}
+                          {t(el.name)}
                         </Link>
                       </Nav.Item>
                     );
                   })}
             </Nav>
             <Nav>
+              <Dropdown style={{ marginRight: '1rem' }}>
+                <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                  {i18n.language.toUpperCase()}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => changeLanguage('en')}>
+                    English
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => changeLanguage('pt')}>
+                    Português
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => changeLanguage('es')}>
+                    Español
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
               <ThemeToggle
                 closeDelay={closeDelay}
                 setExpanded={setisExpanded}
@@ -143,6 +156,5 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
 };
 
 NavBar.propTypes = propTypes;
-// #endregion
 
 export default NavBar;

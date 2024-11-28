@@ -1,24 +1,22 @@
-import React from "react";
-// State
-import { useSelector } from "react-redux";
-import { selectMode } from "../app/appSlice";
-// Components
-import { Element } from "react-scroll";
-import { Button, Col, Container, Row } from "react-bootstrap";
-import Title from "./Title";
-// Config
-import { skillData, resume } from "../config";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectMode } from '../app/appSlice';
+import { Element } from 'react-scroll';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import Title from './Title';
+import { skillData, resume } from '../config';
+import { useTranslation } from 'react-i18next';
 
-// #region component
 const Skills = () => {
   const theme = useSelector(selectMode);
+  const { t } = useTranslation();
 
   return (
     <Element name={"Skills"} id="skills">
       <section className="section">
         <Container className="text-center">
           <Container className="d-flex justify-content-center">
-            <Title size={"h2"} text={"Skills"} />
+            <Title size={"h2"} text={t('Skills')} />
           </Container>
           <Row className="mt-3 align-items-center">
             {skillData.map((skills) => {
@@ -48,6 +46,5 @@ const Skills = () => {
     </Element>
   );
 };
-// #endregion
 
 export default Skills;

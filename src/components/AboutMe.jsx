@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { Element } from "react-scroll";
 import { Col, Container, Row } from "react-bootstrap";
 import Title from "./Title";
+import { useTranslation } from 'react-i18next';
 
 // #region styled-components
 const StyledAboutMe = styled.section`
@@ -28,18 +29,19 @@ const propTypes = {
 };
 
 const AboutMe = ({ avatar_url, bio, moreInfo }) => {
+  const { t } = useTranslation();
   return (
     <Element name={"About"} id="about">
       <StyledAboutMe className="section">
         <Container>
           <Container className="d-flex justify-content-center">
-            <Title size={"h2"} text={"About Me"} />
+            <Title size={"h2"} text={t("About Me")} />
           </Container>
           <Row className="align-items-center mt-5">
             <Col className="d-flex flex-column text-center">
               <Container>
-                {bio && <p>{bio}</p>}
-                {moreInfo && <p>{moreInfo}</p>}
+              {bio && <p>{t(bio)}</p>}
+              {moreInfo && <p>{t(moreInfo)}</p>}
               </Container>
             </Col>
             <Col className="d-none d-md-block text-center">

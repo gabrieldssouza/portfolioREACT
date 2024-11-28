@@ -3,9 +3,19 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Config
 import { githubUsername } from "../config";
 
+const token = "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";
+
 export const apiSlice = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.github.com" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://api.github.com",
+    prepareHeaders: (headers) => {
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     // https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user
     getUsers: builder.query({
@@ -22,5 +32,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useGetUsersQuery, useGetSocialsQuery, useGetProjectsQuery } =
-  apiSlice;
+export const { useGetUsersQuery, useGetSocialsQuery, useGetProjectsQuery } = apiSlice;
