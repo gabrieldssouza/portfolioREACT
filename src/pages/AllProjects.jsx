@@ -134,7 +134,7 @@ const AllProjects = () => {
               <Icon icon="ic:round-search" />
             </InputGroup.Text>
             <FormControl
-              placeholder="Project name"
+              placeholder={t("Project name")}
               aria-label="Search projects"
               aria-describedby="search"
               onChange={(e) => setSearchInput(e.currentTarget.value)}

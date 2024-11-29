@@ -18,6 +18,14 @@ const StyledAboutMe = styled.section`
     width: 18rem;
     height: 18rem;
   }
+
+  @media screen and (max-width: 768px) {
+    .img {
+      margin-top: 5rem;
+      width: 12rem;
+      height: 12rem;
+    }
+  }
 `;
 // #endregion
 
@@ -44,7 +52,7 @@ const AboutMe = ({ avatar_url, bio, moreInfo }) => {
               {moreInfo && <p>{t(moreInfo)}</p>}
               </Container>
             </Col>
-            <Col className="d-none d-md-block text-center">
+            <Col className="text-center">
               <img
                 src={avatar_url}
                 alt="GitHub Avatar"

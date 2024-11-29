@@ -15,7 +15,6 @@ import Loading from "./Loading";
 import Title from "./Title";
 import ProjectCard from "./ProjectCard";
 import { useTranslation } from 'react-i18next';
-import { projectCardImages } from '../config';
 
 // #region component
 const Projects = () => {
@@ -44,9 +43,6 @@ const Projects = () => {
           <>
             <Row xs={1} md={2} lg={3} className="g-4 justify-content-center">
               {mainProjects.map((element) => {
-                const projectImage = projectCardImages.find(
-                  (img) => img.name === element.name
-                )?.image;
                 return (
                   <Col key={element.id}>
                     <ProjectCard

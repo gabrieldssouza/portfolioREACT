@@ -27,6 +27,7 @@ const StyledCard = styled.div`
     .card-img-top {
       height: 50%;
       object-fit: contain;
+      margin-top: 1rem;
     }
 
     .card-link {
@@ -77,7 +78,7 @@ const ProjectCard = ({ demo, description, image, name, url }) => {
       <Card>
         <Card.Img
           variant="top"
-          src={image}
+          src={image ? image : GH}
           alt={name}
           className="mx-auto"
         />

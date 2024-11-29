@@ -21,7 +21,8 @@ const resources = {
       "You must provide a valid formspree url in src/config.js": "You must provide a valid formspree url in src/config.js",
       "Oops, you do not have any GitHub projects yet...": "Oops, you do not have any GitHub projects yet...",
       "View on GitHub ": "View on GitHub",
-      "All Projects": "All Projects"
+      "All Projects": "All Projects",
+      "Project name": "Project name"
     }
   },
   pt: {
@@ -43,7 +44,8 @@ const resources = {
       "You must provide a valid formspree url in src/config.js": "Você deve fornecer uma URL válida do formspree em src/config.js",
       "Oops, you do not have any GitHub projects yet...": "Ops, você ainda não tem nenhum projeto no GitHub...",
       "View on GitHub ": "Ver no GitHub",
-      "All Projects": "Todos os projetos"
+      "All Projects": "Todos os projetos",
+      "Project name": "Nome do projeto"
     }
   },
   es: {
@@ -65,7 +67,8 @@ const resources = {
       "You must provide a valid formspree url in src/config.js": "Debe proporcionar una URL válida de formspree en src/config.js",
       "Oops, you do not have any GitHub projects yet...": "Vaya, aún no tienes ningún proyecto en GitHub...",
       "View on GitHub ": "Ver en GitHub",
-      "All Projects": "Todos los proyectos"
+      "All Projects": "Todos los proyectos",
+      "Project name": "Nombre del proyecto"
     }
   }
 };

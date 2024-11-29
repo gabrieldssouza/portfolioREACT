@@ -10,6 +10,7 @@ import HeroDark from "./images/hero-dark.jpg";
 
 // Projects Images (add your images to the images directory and import below)
 import Logo from "./images/logo.svg";
+import LogoNode from "./images/nodejs.png";
 
 /* START HERE
  **************************************************************
@@ -64,29 +65,59 @@ export const skillData = [
   },
   {
     id: 5,
+    skill: <Icon icon="mdi:tailwind" className="display-4" />,
+    name: "TailwindCSS",
+  },
+  {
+    id: 6,
     skill: <Icon icon="mdi:react" className="display-4" />,
     name: "React",
   },
   {
-    id: 6,
-    skill: <Icon icon="file-icons:styledcomponents" className="display-4" />,
-    name: "Styled Components",
-  },
-  {
     id: 7,
-    skill: <Icon icon="akar-icons:redux-fill" className="display-4" />,
-    name: "Redux",
+    skill: <Icon icon="mdi:react" className="display-4" />,
+    name: "React Native",
   },
   {
     id: 8,
+    skill: <Icon icon="mdi:nodejs" className="display-4" />,
+    name: "Node Js",
+  },
+  {
+    id: 9,
+    skill: <Icon icon="mdi:language-typescript" className="display-4" />,
+    name: "TypeScript",
+  },
+  {
+    id: 10,
+    skill: <Icon icon="mdi:language-python" className="display-4" />,
+    name: "Python",
+  },
+  {
+    id: 11,
+    skill: <Icon icon="mdi:language-php" className="display-4" />,
+    name: "PHP",
+  },
+  {
+    id: 12,
     skill: <Icon icon="bi:git" className="display-4" />,
     name: "Git",
   },
   {
-    id: 9,
+    id: 13,
     skill: <Icon icon="fa6-brands:square-github" className="display-4" />,
     name: "GitHub",
   },
+  {
+    id: 14,
+    skill: <Icon icon="mdi:database" className="display-4" />,
+    name: "MySQL",
+  },
+  {
+    id: 15,
+    skill: <Icon icon="simple-icons:mongodb" className="display-4" />,
+    name: "MongoDB",
+  }
 ];
 
 // Resume link (string - "https://YourResumeUrl") - I am using CloudFront to share my resume (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html)
@@ -106,11 +137,11 @@ export const projectCardImages = [
   },
   {
     name: "apiqrcamNODEJS",
-    image: Logo,
+    image: LogoNode,
   },
   {
     name: "ApiChatNODEJS",
-    image: Logo,
+    image: LogoNode,
   },
 ];
 
@@ -119,7 +150,7 @@ export const projectCardImages = [
   Add your formspree endpoint below.
   https://formspree.io/
 */
-export const formspreeUrl = "https://formspree.io/f/YourEndpoint";
+export const formspreeUrl = "https://formspree.io/f/xjkvaddg";
 
 // Footer icons theme (light or dark)
 export const footerTheme = "dark";

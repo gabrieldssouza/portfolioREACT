@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectMode } from '../app/appSlice';
 import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as ScrollLink } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import defaultLogo from '../images/defaultNavLogo.svg';
 import { Container, Nav, Navbar, Dropdown } from 'react-bootstrap';
 import ThemeToggle from './ThemeToggle';
+
+import Foto from '../images/minhafoto.jpg';
 
 const navLinks = {
   routes: [
@@ -70,7 +73,7 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
           <Navbar.Brand>
             <img
               alt="Logo"
-              src={Logo === null ? defaultLogo : Logo}
+              src={Foto}
               width="35"
               height="35"
               className="rounded-circle logo-img"
@@ -86,10 +89,11 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                 ? navLinks.to.map((el) => {
                     return (
                       <Nav.Item key={el.id}>
-                        <Link
+                        <ScrollLink
                           to={el.to}
                           spy={true}
-                          activeClass="active"
+                          smooth={true}
+                          duration={500}
                           className="nav-link"
                           onClick={() => {
                             setTimeout(() => {
@@ -98,14 +102,14 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                           }}
                         >
                           {t(el.name)}
-                        </Link>
+                        </ScrollLink>
                       </Nav.Item>
                     );
                   })
                 : navLinks.routes.map((el) => {
                     return (
                       <Nav.Item key={el.id}>
-                        <Link
+                        <RouterLink
                           to={el.route}
                           className={
                             pathname === el.route
@@ -119,7 +123,7 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                           }}
                         >
                           {t(el.name)}
-                        </Link>
+                        </RouterLink>
                       </Nav.Item>
                     );
                   })}
