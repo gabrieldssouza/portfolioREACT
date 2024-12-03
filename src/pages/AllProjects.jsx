@@ -55,57 +55,33 @@ const AllProjects = () => {
   }, [userData]);
 
   React.useEffect(() => {
+    let filteredData = [...data];
     if (searchInput !== "") {
-      const filteredData = data.filter((item) => {
-        return item.name.toLowerCase().includes(searchInput.toLowerCase());
-      });
-      const tempPageItems = [];
-      for (
-        let number = 1;
-        number <= Math.ceil(filteredData.length / 6);
-        number++
-      ) {
-        tempPageItems.push(
-          <Pagination.Item
-            key={number}
-            active={number === activePage}
-            onClick={() => setActivePage(number)}
-          >
-            {number}
-          </Pagination.Item>
-        );
-        setPageItems([...tempPageItems]);
-      }
-      if (activePage === 1) {
-        setFilteredResults(filteredData.slice(0, 6));
-      } else {
-        setFilteredResults(
-          filteredData.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
-        );
-      }
-    } else {
-      const tempPageItems = [];
-      for (let number = 1; number <= Math.ceil(data.length / 6); number++) {
-        tempPageItems.push(
-          <Pagination.Item
-            key={number}
-            active={number === activePage}
-            onClick={() => setActivePage(number)}
-          >
-            {number}
-          </Pagination.Item>
-        );
-        setPageItems([...tempPageItems]);
-      }
-      if (activePage === 1) {
-        setFilteredResults(data.slice(0, 6));
-      } else {
-        setFilteredResults(
-          data.slice((activePage - 1) * 6, (activePage - 1) * 6 + 6)
-        );
-      }
+      filteredData = filteredData.filter((item) =>
+        item.name.toLowerCase().includes(searchInput.toLowerCase())
+      );
     }
-  }, [searchInput, data, pageItems.length, activePage]);
+  
+    const totalPages = Math.ceil(filteredData.length / 6);
+    const pageStart = (activePage - 1) * 6;
+    const pageEnd = activePage * 6;
+  
+    setFilteredResults(filteredData.slice(pageStart, pageEnd));
+  
+    const tempPageItems = [];
+    for (let number = 1; number <= totalPages; number++) {
+      tempPageItems.push(
+        <Pagination.Item
+          key={number}
+          active={number === activePage}
+          onClick={() => setActivePage(number)}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    }
+    setPageItems(tempPageItems);
+  }, [searchInput, data, activePage]);
 
   React.useEffect(() => {
     setActivePage(1);
@@ -170,32 +146,30 @@ const AllProjects = () => {
                 })}
           </Row>
           <Container className="d-flex justify-content-center mt-5">
-            {pageItems.length <= 2 ? (
-              <Pagination size="lg">{pageItems}</Pagination>
-            ) : (
-              <Pagination>
-                <Pagination.Prev
-                  onClick={() =>
-                    activePage === 1
-                      ? setActivePage(pageItems.length)
-                      : setActivePage(activePage - 1)
-                  }
-                />
-                {pageItems[0]}
-                <Pagination.Ellipsis />
-                <Pagination.Item active={true}>{activePage}</Pagination.Item>
-                <Pagination.Ellipsis />
-                {pageItems[pageItems.length - 1]}
-                <Pagination.Next
-                  onClick={() =>
-                    activePage === pageItems.length
-                      ? setActivePage(1)
-                      : setActivePage(activePage + 1)
-                  }
-                />
-              </Pagination>
-            )}
-          </Container>
+  {pageItems.length <= 2 ? (
+    <Pagination size="lg">{pageItems}</Pagination> // Caso tenha poucas páginas
+  ) : (
+    <Pagination>
+      <Pagination.Prev
+        onClick={() =>
+          activePage === 1
+            ? setActivePage(pageItems.length)
+            : setActivePage(activePage - 1)
+        }
+      />
+      {/* Exibe todos os números de página */}
+      {pageItems.map((item) => item)}
+      <Pagination.Next
+        onClick={() =>
+          activePage === pageItems.length
+            ? setActivePage(1)
+            : setActivePage(activePage + 1)
+        }
+      />
+    </Pagination>
+  )}
+</Container>
+
         </Container>
       </>
     );

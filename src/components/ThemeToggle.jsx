@@ -36,6 +36,7 @@ const StyledSwitch = styled.label`
     align-items: center;
     transition: var(--transition);
   }
+
 `;
 // #endregion
 

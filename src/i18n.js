@@ -29,7 +29,7 @@ const resources = {
     translation: {
       "Skills": "Habilidades",
       "About Me": "Sobre Mim",
-      "I am a highly qualified full stack developer, with skills in the main web and mobile development technologies, using agile development methodologies.": "Sou um desenvolvedor full stack altamente qualificado, com habilidades nas principais tecnologias de desenvolvimento web e móvel, usando metodologias de desenvolvimento ágeis.",
+      "I am a highly qualified full stack developer, with skills in the main web and mobile development technologies, using agile development methodologies.": "Sou um desenvolvedor full stack altamente qualificado, com habilidades nas principais tecnologias de desenvolvimento web e mobile, utilizando as principais metodologias de desenvolvimento.",
       "Contact": "Contato",
       "Projects": "Projetos",
       "All": "Todos os",

@@ -134,7 +134,7 @@ const NavBar = ({ Logo = defaultLogo, callBack, closeDelay = 125 }) => {
                   {i18n.language.toUpperCase()}
                 </Dropdown.Toggle>
 
-                <Dropdown.Menu>
+                <Dropdown.Menu className='drop'>
                   <Dropdown.Item onClick={() => changeLanguage('en')}>
                     English
                   </Dropdown.Item>
