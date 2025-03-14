@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 // Config
 import { githubUsername } from "../config";
 
-const token = "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";
+const token = "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";
 
 export const apiSlice = createApi({
   reducerPath: "api",
